@@ -37,7 +37,7 @@ print(" ")
 
 
 def callback(node):
-    print(node.isDataNode)
+    print(node.value)
 
 
 print("find:(75,75)")
@@ -46,3 +46,7 @@ print("find:(25,25)")
 root.fetchByPoint(vec(25, 25), callback)
 print("find:(5,5)")
 root.fetchByPoint(vec(5, 5), callback)
+print("find:(5,5)->(75,75)")
+root.fetchByArea(vec(5, 5), vec(75, 75), callback)
+print("find:(75,75)->(200,200)")
+root.fetchByArea(vec(75, 75), vec(200, 200), callback)

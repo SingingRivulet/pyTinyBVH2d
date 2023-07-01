@@ -124,6 +124,12 @@ class AABBNode:
             else:
                 self.right.collisionTest(inNode, callback)
 
+    def fetchByArea(self, area_min, area_max, callback):
+        tmp = AABBNode()
+        tmp.max = area_max
+        tmp.min = area_min
+        self.collisionTest(tmp, callback)
+
     def fetchByPoint(self, point, callback):
         if self.left != None and self.left.inBox(point):
             if(self.left.isDataNode):
