@@ -90,10 +90,10 @@ class AABBNode:
             (inNode.min.y >= self.min.y and inNode.min.y <= self.max.y)
         )
 
-    def inBox(self, inPoint) -> bool:
+    def inBox_AABB(self, inNode) -> bool:
         return (
-            ((inPoint.x >= self.min.x) and (inPoint.x <= self.max.x)) and
-            ((inPoint.y >= self.min.y) and (inPoint.y <= self.max.y))
+            ((inNode.min.x >= self.min.x) and (inNode.max.x <= self.max.x)) and
+            ((inNode.min.y >= self.min.y) and (inNode.max.y <= self.max.y))
         )
 
     def getSizeSq(self) -> float:
@@ -183,7 +183,7 @@ class AABBNode:
 
     def add(self, inNode):
         if(self.left != None):
-            if((not self.left.isDataNode) and inNode.inBox(self.left)):
+            if((not self.left.isDataNode) and inNode.inBox_AABB(self.left)):
                 self.left.add(inNode)
                 return
             elif(self.right == None):
@@ -191,7 +191,7 @@ class AABBNode:
                 return
 
         if(self.right != None):
-            if(not self.right.isDataNode) and inNode.inBox(self.right):
+            if(not self.right.isDataNode) and inNode.inBox_AABB(self.right):
                 self.right.add(inNode)
                 return
             elif(self.left == None):
